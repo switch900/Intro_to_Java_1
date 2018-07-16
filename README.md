@@ -2,8 +2,8 @@
 Introductory course for Object Oriented programming in a Java environment.  Pretty basic stuff but it's my "Hello World".  All of these java files were written using BlueJ. 
 
 Learning Outcomes from this course:
-<ol>
-Explain object-oriented programming concepts including: object, class, method, and encapsulation. <br />   
+<ul>
+<li>Explain object-oriented programming concepts including: object, class, method, and encapsulation.</li>   
 Explain abstraction and modularization in object-oriented programming.    <br />
 Describe data types used in programming.    <br />
 Explain the use of variables and constants.    <br />
@@ -12,4 +12,4 @@ Use correct syntax and documentation standards.<br />
 Read class library interfaces. <br />
 Write simple programs in Java. <br />
 Test and debug simple programs in Java.<br /> 
-</ol>
+</ul>
