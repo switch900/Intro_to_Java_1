@@ -2,7 +2,7 @@
  * Assignment 3 - COMP 1409 Introduction To Java - 55053
  * 
  * @author Andrew Hewitson 
- * @version July 3, 2017
+ * @version June 14, 2017
  */
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -15,15 +15,15 @@ public class LamborghiniDealershipGroup
     /**
      * Constructor for objects of class LamborghiniDealershipGroup
      */
-    public LamborghiniDealershipGroup()
+    public LamborghiniDealershipGroup(){}
     {       
-        carLots = new ArrayList <LamborghiniCarLot>(); 
+        carLots = new ArrayList <>(); 
     }
 
     /**
-     * Constructor for objects of class LamborghiniDealershipGroup and create Dealership Group Name
+     * Constructor for objects of class LamborghiniDealershipGroup
      */
-    public LamborghiniDealershipGroup(String dealershipGroupName)
+    public LamborghiniDealershipGroup(String dealershipGroupName){}
     {     
         setDealershipGroupName(dealershipGroupName);
 
@@ -82,7 +82,7 @@ public class LamborghiniDealershipGroup
     }
 
     /**
-     * @param dealershipGroupName - set new Dealership group name
+     * @param set new Dealership group name
      */
     public void setDealershipGroupName(String dealershipGroupName)
     {
@@ -93,7 +93,7 @@ public class LamborghiniDealershipGroup
     }
 
     /**
-     * @param carLots - set new Inventory
+     * @param get set Inventory
      */
     public void setCarLots(ArrayList <LamborghiniCarLot> carLots)
     {
@@ -104,7 +104,7 @@ public class LamborghiniDealershipGroup
     }
 
     /**
-     * @param carLot - set new car lot
+     * @param set new car lot
      */
     public void setNewCarLots(LamborghiniCarLot carLot)
     {
@@ -115,18 +115,18 @@ public class LamborghiniDealershipGroup
     }
 
     /**
-     * @param carLot - add car lot provided to the carLots ArrayList
+     * @param add car lot
      */
     public void addCarLot(LamborghiniCarLot carLot)
     {
         if(carLot!= null)
         {   
-            carLots.add(carLot);
+            setNewCarLots(carLot);
         }
     }
 
     /**
-     * @return total inventory count of car lots
+     * @return total inventory
      */
     public int getTotalInventoryCount()
     {
@@ -143,12 +143,10 @@ public class LamborghiniDealershipGroup
     }
 
     /**
-     * @return if modelName exists in any of the car lots
+     * @return if model name exists
      */
     public boolean hasModelName(String modelName)
-    {   
-        boolean hasModelName = false;
-
+    {        
         if(modelName != null)
 
             if(carLots != null)
@@ -157,54 +155,35 @@ public class LamborghiniDealershipGroup
                 {
                     if(modelName != null && tempCarLot.hasCarModel(modelName))
 
-                        hasModelName = true;
+                        return true;
                 }
             }
-        return hasModelName;
+        return false;
     }
 
     /**
      * @return an array of all the car lots whos average horsepower for a given year is within the range specified
-     */ 
+     */
     public LamborghiniCarLot[] getAllCarLotsWithAverageHorsepowerInRangeForYear(int modelYear, double lowHP, double highHP)
     {     
-        int goodHP = 0;
-
+        int sum = 0;
+        LamborghiniCarLot[] allCarLotsWithAverageHorsepowerInRangeForYear = new LamborghiniCarLot[sum]; 
         if(carLots != null)
-            for(int i = 0; i<carLots.size(); i++)
-            {     
-                for(int j = 0; j<carLots.get(i).getInventory().size(); j++)
-
-                    if(carLots.get(i).getInventory().get(j).getModelYear() == modelYear)
+            for(LamborghiniCarLot tempCarLot : carLots)
+            {
+                if(tempCarLot.getInventory().iterator().hasNext() && tempCarLot.getInventory().iterator().next().getModelYear()== modelYear)
+                {         
+                    if(tempCarLot.getInventory().iterator().hasNext() &&
+                    tempCarLot.getInventory().iterator().next().getHorsepower()<=highHP &&
+                    tempCarLot.getInventory().iterator().next().getHorsepower()>=lowHP)
                     {
-                        if(carLots.get(i).getAverageHorsepowerOfYear(modelYear) >=lowHP &&
-                        carLots.get(i).getAverageHorsepowerOfYear(modelYear) <= highHP)
-                        {                                
-                            goodHP++;
-                            break;
-                        }
+                        allCarLotsWithAverageHorsepowerInRangeForYear = new LamborghiniCarLot[sum]; 
+                        sum++;
                     }
-            }
 
-        LamborghiniCarLot[] allCarLotsWithAverageHorsepowerInRangeForYear = new LamborghiniCarLot[goodHP];
-        int indexInNewArray= 0;
-        if(carLots != null)
-            for(int i = 0; i<carLots.size(); i++)
-            {     
-                for(int j = 0; j<carLots.get(i).getInventory().size(); j++)
-
-                    if(carLots.get(i).getInventory().get(j).getModelYear() == modelYear) 
-                    {
-                        if(carLots.get(i).getAverageHorsepowerOfYear(modelYear) >=lowHP &&
-                        carLots.get(i).getAverageHorsepowerOfYear(modelYear) <= highHP)                         
-                        {
-                            allCarLotsWithAverageHorsepowerInRangeForYear[indexInNewArray]=carLots.get(i);                          
-                            indexInNewArray++;
-                            break;
-                        }
-                    }
+                }
             }
         return allCarLotsWithAverageHorsepowerInRangeForYear;
-    }
+    }  
 }
 

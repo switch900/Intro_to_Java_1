@@ -2,20 +2,17 @@
  * Assignment 3 - COMP 1409 Introduction To Java - 55053
  * 
  * @author Andrew Hewitson 
- * @version July 3, 2017
+ * @version June 14, 2017
  */
 public class BookStore
 {
     private String storeName;
     private Book[] inventory;
-    
-    private static String GOOD_NAME = "Jason's Used Books";
-    private static String BAD_NAME = "Taylor's Used Books";
 
     /**
      * Constructor for objects of class BookStore
      */
-    public BookStore()
+    public BookStore(){}
     { 
         inventory = new Book[20]; 
 
@@ -42,7 +39,7 @@ public class BookStore
     }
 
     /**
-     * Constructor for Array of objects from Book class and creates storeName parameter
+     * Constructor for Arry of objects from Book class
      */
     public BookStore(String storeName)
     {
@@ -81,7 +78,7 @@ public class BookStore
     }
 
     /**
-     * @param storeName - set new store name
+     * @param set new store name
      */
     public void setStoreName(String storeName)
     {
@@ -89,9 +86,9 @@ public class BookStore
         {
             this.storeName = storeName;
         }
-        if(storeName.equals(BAD_NAME))
+        if(storeName.equals("Taylor's Used Books"))
         {
-            this.storeName = GOOD_NAME;
+            this.storeName = "Jason's Used Books";
         }
     }
 
@@ -112,7 +109,7 @@ public class BookStore
     }
 
     /**
-     * @return the full name of the author who wrote the book by this title
+     * @return Author's full name by title
      */
     public String getAuthorFullName(String title)
     {
@@ -121,6 +118,7 @@ public class BookStore
         {
             if(title != null && title != "" && title.equalsIgnoreCase(inventory[index].getTitle()))
             {
+                // System.out.println(inventory[index].getAuthorName());
                 return inventory[index].getAuthorName();
             }
         }
@@ -128,19 +126,11 @@ public class BookStore
     }
 
     /**
-     * @return an Array of all books written by an author with this last name
+     * @return all books written by an author
      */
     public Book[] getBooksWrittenBy(String authorLastName)
-    {   
-        int a = 0;
-        for(int b = 0; b<inventory.length; b++)
-        { 
-            if(authorLastName.equalsIgnoreCase(inventory[b].getAuthor().getName().getLastName()))
-                {                
-                    a++;    
-                }
-            }            
-        Book[] booksWrittenBy = new Book[a];
+    {      
+        Book[] booksWrittenBy = new Book[inventory.length];
         int newIndex = 0;
         {
             for(int index = 0; index<inventory.length; index++)
@@ -178,42 +168,31 @@ public class BookStore
     }
 
     /**
-     * @return an Array of book titles containing wordInTitle
+     * @return an array of book titles containing a specific word
      */
     public String[] getBookTitlesContaining(String wordInTitle)
     {
-        int firstIndex = 0;
-        if (wordInTitle != null)
-            for(int a = 0; a<inventory.length; a++)
-            {
-                if(inventory != null && wordInTitle != null && wordInTitle != "" && inventory[a].getTitle().contains(wordInTitle.toUpperCase()))
-                {                                
-                    firstIndex++;                     
-                }
-            }
+        String[] booksWithWordInTitle = new String[inventory.length];
         int newIndex = 0;
-        String[] getBookTitlesContaining = new String[firstIndex];
         if (wordInTitle != null)
-            for(int index = 0; index<inventory.length; index++)
-            {
-                if(inventory != null && wordInTitle != null && wordInTitle != "" && inventory[index].getTitle().contains(wordInTitle.toUpperCase()))
-                {                 
-                    getBookTitlesContaining[newIndex] = new String(inventory[index].getTitle());
-                    newIndex++;  
-                    if(inventory[index].getTitle().equals(null))
-                    {
-                        break;
-                    }
-                }
+        for(int index = 0; index<inventory.length; index++)
+        {
+            if(wordInTitle != null && wordInTitle != "" && inventory[index].getTitle().contains(wordInTitle.toUpperCase()))
+            {   
+                {
+                    booksWithWordInTitle[newIndex] = new String(inventory[index].getTitle());
+                    newIndex++;                      
+                }           
             }
-
+        }   
         if(newIndex == 0)
         {
             return null;
         }
         else
         {
-            return getBookTitlesContaining; 
+            return booksWithWordInTitle;
         }
     }
 }
+
