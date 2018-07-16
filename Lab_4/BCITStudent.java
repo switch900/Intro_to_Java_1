@@ -1,9 +1,8 @@
-
 /**
  * Lab 4A - BCIT Student 
  * 
  * @author Andrew Hewitson
- * @version May 9, 2017
+ * @version May 16, 2017
  */
 public class BCITStudent
 {
@@ -13,124 +12,106 @@ public class BCITStudent
     private String sex;
     public static final String homeProvince = "British Columbia";
     public static String schoolMotto = "It's your career. Get it right!";
+    public static final int MINIMUM_NAME_LENGTH_LETTERS = 3;
+    public static final int CURRENT_YEAR = 2017;
+    public static final int OLDEST_YEAR = 1900;
+    public static final int YOUNGEST_YEAR = 2000;
 
     /**
      * Constructor for objects of class BCITStudent
-     * @param students last name that is greater than 3 and not null
-     * @param students first name that is greater than 3 and not null
-     * @param year the student was born that is between 1900 and 2000
+     * @param students last name that is greater than minimum name length and not null
+     * @param students first name that is greater than minimum name length and not null
+     * @param year the student was born in that is between oldest year and youngest year
      * @param sex of student 
      */
 
-    public BCITStudent(String theLastName,String theFirstName,int theYearBorn,String theSex,String theSchoolMotto, String theHomeProvince)
+    public BCITStudent(String theLastName,String theFirstName,int theYearBorn,String theSex)
     {
-        if (theLastName != null && theLastName.length() >=3)
+        if (theLastName != null && theLastName.length() >= MINIMUM_NAME_LENGTH_LETTERS)
         {
             lastName = theLastName;
         }
 
-        if (theFirstName!= null && theFirstName.length() >=3)
+        if (theFirstName!= null)
         {
             firstName = theFirstName;
         }
-
-        if (theYearBorn >=1900 && theYearBorn <=2000)
+        if (theYearBorn >=OLDEST_YEAR && theYearBorn <=YOUNGEST_YEAR)
         {
             yearBorn = theYearBorn;
         }
-
-        
-        sex = theSex;
-        
+        if (theSex.equals("male")) 
+        {
+            sex = theSex;
+        }
+        else if (theSex.equals("female"))
+        {
+            sex = theSex;
+        }
     }
 
     /**
-     * @return the Student's lastName if longer than 3 letters and not null
+     * @return the Student's lastName
      */
     public String getLastName()
-    {
-       
-            return lastName;
-       
-        
+    {    
+        return lastName;   
     }
 
     /**
-     * @return the student's first name if longer than 3 letters and not null
+     * @return the student's first name 
      */
     public String getFirstName()
     {
-        
-            return firstName;
-       
-        
+        return firstName;  
     }
 
     /**
-     * @return the year the student was born if between 1900 and 2000
+     * @return the year the student was born 
      */
     public int getYearBorn()
     {
-        
-            return yearBorn;
-      
-        
+        return yearBorn;   
     }
 
     /**
      * @return sex of student if male or female
      */
     public String getSex()
-    {
-        if (sex =="male") 
-        { 
-            return sex;
-        }
-        else if (sex == "female")
-        {
-            return sex;
-        }
-        else
-        {
-            return sex = "invalid text";
-        }
+    {        
+        return sex;
     }
 
     /**
-     * @param replace student's last name with new last name that is longer than 3 letters and not null
+     * @param replace student's last name with new last name that is longer than minimum name length and not null
      */
     public void setNewLastName(String newLastName)
     {
-        if ((newLastName != null) && (newLastName.length() >=3))
+        if ((newLastName != null) && (newLastName.length() > MINIMUM_NAME_LENGTH_LETTERS))
         {
-            lastName = newLastName;
+            lastName = newLastName;       
         }
-       
     }
 
     /**
-     * @param replace student's first name with new first name that is longer than 3 letters and not null
+     * @param replace student's first name with new first name that is longer than minimum name length and not null
      */
     public void setNewFirstName(String newFirstName)
     {
-        if ((newFirstName != null) && (newFirstName.length() >=3))
+        if (newFirstName != null)
         {
-            firstName = newFirstName;
+            firstName = newFirstName;       
         }
-        
     }
 
     /**
-     * @param replace year born with new year born that is between 1900 and 2000
+     * @param replace year born with new year born that is between oldest and youngest year
      */
     public void setNewYearBorn(int newYearBorn)
-    {
-        if ((newYearBorn >= 1900) && (newYearBorn <= 2000))
+    {   if ((newYearBorn >= OLDEST_YEAR) && (newYearBorn <= YOUNGEST_YEAR))
         {
-            yearBorn = newYearBorn;
+            yearBorn = newYearBorn;       
         }
-       
-
     }
 
     /**
@@ -138,17 +119,13 @@ public class BCITStudent
      */
     public void setNewSex (String newSex)
     {
-        if (newSex == "male") 
+        if (newSex.equals ("male"))
         { 
             sex = newSex;
         }
-        else if (newSex == "female")
+        else if (newSex.equals ("female"))
         {
             sex = newSex;
-        }
-        else
-        {
-            sex = "invalid text";
         }
     }
 
@@ -160,24 +137,38 @@ public class BCITStudent
         schoolMotto = newMotto;
     }
 
-    public void printDetails()
+    /**
+     * @param make school Motto upper case
+     */
+    private static String upperCaseMotto()
     {
-        {
-            System.out.println(firstName + " " + lastName);
-        }
+        return schoolMotto.toUpperCase();
+    }
 
-        if (yearBorn == 0)
+    /**
+     * @return print details
+     */
+    public void printDetails()
+    { 
+        System.out.print(firstName + " " + lastName + " (" + sex + ") is " + (CURRENT_YEAR - yearBorn)+ " years old. ");
+        if (sex.equals ("male"))
         {
-            System.out.println ("invalid number");
+            System.out.print("His");
         }
-        else
+        if (sex.equals ("female"))
         {
-            System.out.println(yearBorn);
+            System.out.print("Her");
         }
-
-        System.out.println(sex);
-        System.out.println(homeProvince);
-        System.out.println(schoolMotto);
+        System.out.print(" home province is " + homeProvince + " and ");
+        if (sex.equals("male"))
+        {
+            System.out.print ("his");
+        }
+        if (sex.equals("female"))
+        {
+            System.out.print("her"); 
+        }
+        System.out.print(" school's motto is: " + upperCaseMotto());
     }
 
 }
