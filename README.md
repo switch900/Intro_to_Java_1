@@ -4,12 +4,12 @@ Introductory course for Object Oriented programming in a Java environment.  Pret
 Learning Outcomes from this course:
 <ul>
 <li>Explain object-oriented programming concepts including: object, class, method, and encapsulation.</li>   
-Explain abstraction and modularization in object-oriented programming.    <br />
-Describe data types used in programming.    <br />
-Explain the use of variables and constants.    <br />
-Identify and use control structures. <br />
-Use correct syntax and documentation standards.<br /> 
-Read class library interfaces. <br />
-Write simple programs in Java. <br />
-Test and debug simple programs in Java.<br /> 
+<li>Explain abstraction and modularization in object-oriented programming.</li> 
+<li>Describe data types used in programming.</li> 
+<li>Explain the use of variables and constants.</li> 
+<li>Identify and use control structures.</li> 
+<li>Use correct syntax and documentation standards.</li>  
+<li>Read class library interfaces.</li> 
+<li>Write simple programs in Java.</li> 
+<li>Test and debug simple programs in Java.</li>  
 </ul>
